@@ -1,0 +1,33 @@
+[project]
+name = "cat-invaders"
+version = "0.1.0"
+description = "A Space-Invaders-style arcade game where you launch cuddly cats at grumpy alien cats to calm them down and send them home."
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [{ name = "Danilo Di Leo" }]
+keywords = ["game", "pygame", "arcade", "space-invaders"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: End Users/Desktop",
+    "License :: OSI Approved :: MIT License",
+    "Topic :: Games/Entertainment :: Arcade",
+    "Programming Language :: Python :: 3",
+]
+dependencies = ["pygame-ce>=2.4"]
+
+[project.urls]
+Homepage = "https://github.com/danilodileo/cat-invaders"
+
+[project.scripts]
+cat-invaders = "cat_invaders.main:run"
+
+[project.optional-dependencies]
+dev = ["pytest>=7", "pygbag>=0.9"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/cat_invaders"]
