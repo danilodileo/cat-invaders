@@ -41,22 +41,6 @@ bonus cardboard-box mothership for extra points when it drifts by. Clear the
 whole swarm to advance a level; let them reach the bottom, or run out of
 lives, and it's game over.
 
-## 🌐 Browser version
-
-This repo is set up to also build a browser-playable version with
-[pygbag](https://github.com/pygame-web/pygbag) (pygame → WebAssembly), via
-[`.github/workflows/deploy-web.yml`](.github/workflows/deploy-web.yml), which
-publishes to GitHub Pages on every push to `main`.
-
-**Current status:** the build pipeline works (see below), but the actual
-in-browser run currently fails to start due to an upstream version mismatch
-on pygbag's own asset CDN — the `pygame-ce` wasm wheel it tries to fetch for
-the bundled CPython 3.12 build doesn't exist under the filename its loader
-expects (a real, verified 404 on pygame-web's CDN as of this writing, not a
-bug in this repo). Once that's resolved upstream, the deployed Pages site
-should work without any changes here. Track pygbag's releases/issues if you
-want to know when it's fixed.
-
 ## 🛠 Development
 
 ```bash
@@ -69,16 +53,16 @@ cat-invaders          # play
 pytest                # run the (headless) test suite
 ```
 
-### Building the browser version locally
+### Browser build (experimental, not yet playable)
 
-```bash
-pip install pygbag
-pygbag src/          # serves at http://localhost:8000, builds to src/build/web
-```
-
-The GitHub Actions workflow in [`.github/workflows/deploy-web.yml`](.github/workflows/deploy-web.yml)
-runs the same command and publishes `src/build/web` to GitHub Pages on every
-push to `main`.
+There's a [`.github/workflows/deploy-web.yml`](.github/workflows/deploy-web.yml)
+workflow that builds a WebAssembly version with
+[pygbag](https://github.com/pygame-web/pygbag) and publishes it to GitHub
+Pages on every push to `main`. It currently fails to run in the browser due
+to an upstream version mismatch on pygbag's own asset CDN (the `pygame-ce`
+wasm wheel it fetches doesn't exist under the filename its loader expects —
+not a bug in this repo). Not linked from here until it actually works; build
+it locally with `pip install pygbag && pygbag src/` if you want to check on it.
 
 ## 📁 Project structure
 
